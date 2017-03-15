@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+            <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <title>Don't know to Code? Want to use the twitter Search API? Look no further</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="/theme/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="/theme/css/clean-blog.min.css" rel="stylesheet">
+
+        <!-- Code highlight color scheme -->
+            <link href="/theme/css/code_blocks/darkly.css" rel="stylesheet">
+
+
+        <!-- Custom Fonts -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+
+        <meta name="description" content="A twitter CLI tool to get search data and convert to csv">
+
+        <meta name="author" content="Vaulstein Rodrigues">
+
+        <meta name="tags" content="twitter">
+        <meta name="tags" content="api">
+        <meta name="tags" content="cli">
+
+	                <meta property="og:locale" content="">
+		<meta property="og:site_name" content="Tech-E">
+
+	<meta property="og:type" content="article">
+            <meta property="article:author" content="/author/vaulstein-rodrigues.html">
+	<meta property="og:url" content="/twitter api.html">
+	<meta property="og:title" content="Don't know to Code? Want to use the twitter Search API? Look no further">
+	<meta property="article:published_time" content="2016-11-27 22:20:00+05:30">
+            <meta property="og:description" content="A twitter CLI tool to get search data and convert to csv">
+
+            <meta property="og:image" content="/theme/images/post-bg.jpg">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@VaulsteinR">
+        <meta name="twitter:title" content="Don't know to Code? Want to use the twitter Search API? Look no further">
+
+            <meta name="twitter:image" content="/theme/images/post-bg.jpg">
+
+            <meta name="twitter:description" content="A twitter CLI tool to get search data and convert to csv">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Tech-E</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+
+                            <li><a href="/pages/about-me.html">About Me</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+        <header class="intro-header" style="background-image: url('/theme/images/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>Don't know to Code? Want to use the twitter Search API? Look no further</h1>
+                        <span class="meta">Posted by
+                                <a href="/author/vaulstein-rodrigues.html">Vaulstein Rodrigues</a>
+                             on Sun 27 November 2016
+                        </span>
+                            <span class="meta">Updated on Sun 27 November 2016</span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <!-- Post Content -->
+    <article>
+        <p>Everyone on the internet has an opinion of their own.
+And we seldom find ourselves getting in random arguments with friends
+and strangers trying to prove our point.</p>
+<p>But as <em>W. Edwards Deming</em> once said:</p>
+<blockquote>
+<p>Without data you're just another person with an opinion.</p>
+</blockquote>
+<p><em>Data</em> is something that supports your opinion. Makes it a verifiable truth. A <strong>FACT</strong>.</p>
+<p>Twitter is platform where people of different opinions share and sometimes rant what they
+believe. Each of these opinions and information could be used to get to the truth.</p>
+<p>Be it the sudden news that 500/1000 notes are being demonetized or that Trump got voted to
+be president of the US or if there is really a chip within the new currency?
+<a href="http://emoji.fileformat.info/gemoji/trollface.png"><img alt="trollface.png" src="http://emoji.fileformat.info/gemoji/trollface.png" /></a></p>
+<p>The use of twitter data doesn't end here.
+You can see what people of different demographics have to say about an ongoing event.
+You must have seen the twitter stats during an ongoing IPL match, which team supporters
+are tweeting the most.
+Public opinions after the results of the Elections.
+A little analysis on the data and you could even possibly know if an event has a
+<strong>positive</strong> or <strong>negative</strong> effect on people.</p>
+<p>What if you wanted to know what is the latest fashion trend in Mumbai? <em>#FashionTrend</em>
+Bloggers tweeting about your companies products and your Boss wants the list of the names
+ASAP!
+Wouldn't it be a little mundane to go on twitter, search who is tweeting <em>#YourProduct</em>
+copy the details to an excel sheet and send it to your Boss?</p>
+<p>So I made this little tool that removes the hassle to code, will ask you want you want to
+search for, fetches the data from twitter and writes it to a csv file.
+Don't know csv, upload the file to google drive and then it is just another Google/Excel Sheet.</p>
+<p>What do you need to know/have to run the file?
+    1. Cmd or terminal
+    2. Python installed. If you have a Mac or a linux system, it comes pre-installed.
+    3. A twitter account with an App created, which is simple to do</p>
+<p>You can find the instructions here: <a href="https://github.com/vaulstein/twitterApiForHumans">Twitter API for Humans</a></p>
+<p>Feel free to send me feedback.
+The tool is still under development, let me know what I can do to improve it.</p>
+    </article>
+
+        <div class="tags">
+            <p>tags: <a href="/tag/twitter.html">twitter</a>, <a href="/tag/api.html">api</a>, <a href="/tag/cli.html">cli</a></p>
+        </div>
+
+    <hr>
+
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                            <li>
+                                <a href="https://twitter.com/VaulsteinR">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/vaulstein">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://stackoverflow.com/users/1934182/vaulstein">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-stackoverflow fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/in/vaulstein-rodrigues-85000549">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                    </ul>
+<p class="copyright text-muted">
+    Blog powered by <a href="http://getpelican.com">Pelican</a>,
+    which takes great advantage of <a href="http://python.org">Python</a>.
+</p>                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="/theme/js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/theme/js/bootstrap.min.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="/theme/js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
