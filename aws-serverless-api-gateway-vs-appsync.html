@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+            <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <title>Discovering Serverless Magic: API Gateway, AWS AppSync, and AWS Lambda</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="/theme/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="/theme/css/clean-blog.min.css" rel="stylesheet">
+
+        <!-- Code highlight color scheme -->
+            <link href="/theme/css/code_blocks/darkly.css" rel="stylesheet">
+
+
+        <!-- Custom Fonts -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+
+        <meta name="description" content="Don't know to Code? Want to use the twitter Search API? Look no further">
+
+        <meta name="author" content="Vaulstein Rodrigues">
+
+        <meta name="tags" content="AWS">
+        <meta name="tags" content="API Gateway">
+        <meta name="tags" content="AWS AppSync">
+        <meta name="tags" content="AWS Lambda">
+
+	                <meta property="og:locale" content="">
+		<meta property="og:site_name" content="Tech-E">
+
+	<meta property="og:type" content="article">
+            <meta property="article:author" content="/author/vaulstein-rodrigues.html">
+	<meta property="og:url" content="/aws-serverless-api-gateway-vs-appsync.html">
+	<meta property="og:title" content="Discovering Serverless Magic: API Gateway, AWS AppSync, and AWS Lambda">
+	<meta property="article:published_time" content="2024-10-19 19:14:00+05:30">
+            <meta property="og:description" content="What to choose for your serverless - API Gateway, AWS AppSync, and AWS Lambda?">
+
+            <meta property="og:image" content="/theme/images/post-bg.jpg">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@VaulsteinR">
+        <meta name="twitter:title" content="Discovering Serverless Magic: API Gateway, AWS AppSync, and AWS Lambda">
+
+            <meta name="twitter:image" content="/theme/images/post-bg.jpg">
+
+            <meta name="twitter:description" content="What to choose for your serverless - API Gateway, AWS AppSync, and AWS Lambda?">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Tech-E</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+
+                            <li><a href="/pages/about-me.html">About Me</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+        <header class="intro-header" style="background-image: url('/theme/images/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>Discovering Serverless Magic: API Gateway, AWS AppSync, and AWS Lambda</h1>
+                        <span class="meta">Posted by
+                                <a href="/author/vaulstein-rodrigues.html">Vaulstein Rodrigues</a>
+                             on Sat 19 October 2024
+                        </span>
+                            <span class="meta">Updated on Sat 19 October 2024</span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <!-- Post Content -->
+    <article>
+        <h1>Discovering Serverless Magic: API Gateway, AWS AppSync, and AWS Lambda</h1>
+
+<p><strong>Audience:</strong> Cloud developers, DevOps engineers, and tech enthusiasts looking to dive deeper into serverless technologies.</p>
+
+<h2>My Day at Amazon Community Day</h2>
+
+<p>Picture this: you're at Amazon Community Day, surrounded by cloud enthusiasts, and you stumble into a session on serverless architectures. This is where I had my "Aha!" moment with AWS services—specifically, <strong>API Gateway</strong>, <strong>AWS AppSync</strong>, and <strong>AWS Lambda</strong> Function URLs. If you've ever wondered how to create scalable, real-time apps with minimal server management, this is your moment too!</p>
+<p>Shoutout to <a src="https://www.linkedin.com/in/jones-zachariah-noel-ns">Jones Zachariah Noel</a> for the amazing session!</p>
+
+<div class="meme">
+    <img src="https://greenash.net.au/img/EmYeP4Nl1z-450.jpeg" alt="Serverless meme">
+    <p><em>When you realize your server doesn't exist anymore... because it's serverless!</em></p>
+</div>
+
+<h2>Overview: Why This Matters</h2>
+
+<p>Serverless computing is changing how we build applications. Forget about managing infrastructure—just focus on your code! At the event, I discovered how <strong>API Gateway</strong>, <strong>AWS AppSync</strong>, and <strong>AWS Lambda Function URLs</strong> work together to provide a powerful solution for modern applications. Understanding these services can help you scale easily, reduce costs, and improve your app's performance.</p>
+
+<div class="meme">
+    <img src="https://lh7-us.googleusercontent.com/Rdnmem4zk0kJH_4L_kanRaQX50RQoi0GFMI6sfkT82bT8fC_7n-JyY-EouIzk8JBoBkP5bTB6GGflVZglfcxHJGxHmffkd5IgEAI45WfO1jEoSaIGr-fIMzaZ6Shnfa0MU2JSOQceNCKNcPbYmWZk9I" alt="Lambda and API Gateway meme">
+    <p><em>"I don’t always write APIs, but when I do, I make them serverless with AWS Lambda!"</em></p>
+</div>
+
+<h2>Key Points</h2>
+
+<h3>Comparison Table: API Gateway, AWS AppSync, and AWS Lambda Function URLs</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>AWS Service</th>
+            <th>Amazon API Gateway</th>
+            <th>AWS AppSync</th>
+            <th>AWS Lambda Function URLs</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Protocol</td>
+            <td>HTTPs, WebSocket</td>
+            <td>HTTPs, WebSocket</td>
+            <td>HTTPs</td>
+        </tr>
+        <tr>
+            <td>API Type</td>
+            <td>RESTful, WebSocket</td>
+            <td>GraphQL</td>
+            <td>RESTful in nature</td>
+        </tr>
+        <tr>
+            <td>Security</td>
+            <td>API keys, IAM, Cognito, Custom authorizers</td>
+            <td>API keys, IAM, Cognito</td>
+            <td>IAM roles</td>
+        </tr>
+        <tr>
+            <td>Caching</td>
+            <td>Various caching options available</td>
+            <td>Simple caching option available</td>
+            <td>N/A</td>
+        </tr>
+        <tr>
+            <td>Offline capability</td>
+            <td>N/A</td>
+            <td>Supported with AppSync resolvers and SDK</td>
+            <td>N/A</td>
+        </tr>
+        <tr>
+            <td>Integration type</td>
+            <td>REST APIs, Lambda functions, selective AWS Services</td>
+            <td>Data Sources - HTTP APIs, Lambda Functions, DynamoDB, Aurora</td>
+            <td>Lambda function based integrations</td>
+        </tr>
+        <tr>
+            <td>API operation</td>
+            <td>CRUD with HTTP methods</td>
+            <td>GraphQL operations - Query, Mutation, and Subscriptions</td>
+            <td>Defined by Lambda function</td>
+        </tr>
+        <tr>
+            <td>Direct integration with AWS services with transformation</td>
+            <td>Mapping request and response templates</td>
+            <td>AppSync resolvers with VTL and JS runtime - both unit resolvers and pipeline resolvers</td>
+            <td>N/A</td>
+        </tr>
+        <tr>
+            <td>Throttling and rate-limits</td>
+            <td>Granular control with usage plans</td>
+            <td>Limited throttling options for the APIs</td>
+            <td>N/A</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Further Exploration: Learn More About AWS Services</h2>
+
+<p>If you're ready to dive deeper into these services, here are some resources I recommend:</p>
+<ul>
+    <li><a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html">API Gateway Documentation</a></li>
+    <li><a href="https://docs.aws.amazon.com/appsync/latest/devguide/welcome.html">AWS AppSync Documentation</a></li>
+    <li><a href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">AWS Lambda Documentation</a></li>
+    <li><a href="https://www.udemy.com/course/aws-serverless-microservices/">Udemy: AWS Serverless Microservices Course</a></li>
+</ul>
+
+<h2>Conclusion: Dive Into Serverless Today!</h2>
+
+<p>Attending the Amazon Community Day gave me a fresh perspective on the power of serverless computing. If you're building scalable, efficient applications, leveraging services like <strong>API Gateway</strong>, <strong>AWS AppSync</strong>, and <strong>AWS Lambda Function URLs</strong> is a must. The beauty of serverless is that it lets you focus on code, not infrastructure. So, what's stopping you? Get started today!</p>
+
+<div class="meme">
+    <img src="https://miro.medium.com/v2/resize:fit:526/1*DgdXbb-mdbrKE_J9zsSQXw.jpeg" alt="Serverless vs traditional infrastructure meme">
+    <p><em>Traditional infrastructure vs. Serverless: Who's winning?</em></p>
+</div>
+    </article>
+
+        <div class="tags">
+            <p>tags: <a href="/tag/api-gateway.html">API Gateway</a>, <a href="/tag/appsync.html">APP Sync</a>, <a href="/tag/lambda.html">Lambda</a></p>
+        </div>
+
+    <hr>
+
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                            <li>
+                                <a href="https://twitter.com/VaulsteinR">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/vaulstein">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://stackoverflow.com/users/1934182/vaulstein">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-stackoverflow fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/in/vaulstein-rodrigues-85000549">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                    </ul>
+<p class="copyright text-muted">
+    Blog powered by <a href="http://getpelican.com">Pelican</a>,
+    which takes great advantage of <a href="http://python.org">Python</a>.
+</p>                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="/theme/js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/theme/js/bootstrap.min.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="/theme/js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
